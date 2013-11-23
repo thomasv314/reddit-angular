@@ -26,6 +26,11 @@ angular.module('redditApp', [
       });
   })
   .run(function($rootScope, $location) {
+
+    Date.prototype.formatShort = function() {
+        return (this.getMonth()+1) +"/"+this.getDay()+"/"+this.getFullYear();
+    };
+
     $rootScope.goHome = function() {
       $location.path('/');
     } 
