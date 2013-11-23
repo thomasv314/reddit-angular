@@ -1,0 +1,31 @@
+<div class="bar bar-header bar-calm">
+  <h1 class="title">
+    {{ post.title }}
+  </h1>
+  <button class="button">
+    View
+  </button>
+
+</div>
+
+<div class="content has-header padded">
+  <div class="list">
+
+    <div class="item item-button-right">
+      <strong>Upvotes:</strong>
+      {{ post.ups }} 
+      <button class="button button-primary">
+        <i class="icon ion-arrow-up-b"></i>
+      </button>
+    </div>
+    
+    <div class="item item-button-right">
+      <strong>Downvotes:</strong>
+      {{ post.downs }}
+      <button class="button button-primary">
+        <i class="icon ion-arrow-down-b"></i>
+      </button>
+    </div> 
+
+  </div>
+</div>

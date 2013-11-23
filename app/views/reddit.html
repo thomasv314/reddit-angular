@@ -1,0 +1,11 @@
+<div class="bar bar-header bar-calm">
+  <h1 class="title">browsing &#47;r&#47;{{ reddit }}</h1>
+</div>
+
+<content has-header="true">
+  <list>
+    <item ng-repeat="post in reddit_posts" ng-click="selectPost(post)" on-select="selectPost(post)">
+      {{ post.title }}
+    </item>
+  </list> 
+</content>
