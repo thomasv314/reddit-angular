@@ -2,7 +2,9 @@
 
 angular.module('redditApp')
   .controller('RedditPostCtrl', function ($scope, $location, $http) {
-    
+ 
+    $scope.post_loaded = false;
+
     $scope.post_url = 'http://www.corsproxy.com/reddit.com'+$location.path()+".json";
     
     $http.get($scope.post_url).success(function(data) {
@@ -10,6 +12,7 @@ angular.module('redditApp')
       $scope.post_comments = data[1].data.children.map(function(obj) {
         return obj.data;
       });
+      $scope.post_loaded = true;
     });   
 
     

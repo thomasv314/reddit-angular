@@ -2,10 +2,12 @@
 
 angular.module('redditApp')
   .controller('RedditCtrl', function ($scope, $http, $routeParams, $location) {
-   
+
+    $scope.reddit_loaded = false;
+
     // Reddit Configuration 
     $scope.reddit = $routeParams.redditId;
-   
+
     $scope.reddit_url = 'http://www.corsproxy.com/reddit.com/r/'+$scope.reddit+'.json';
 
     // Reddit Posts
@@ -16,7 +18,7 @@ angular.module('redditApp')
       $scope.reddit_posts = data.data.children.map(function(obj) {
         return obj.data;
       });
-      console.log($scope.reddit_posts);
+      $scope.reddit_loaded = true; 
     });
 
     // Called when a post is selected

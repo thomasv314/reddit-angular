@@ -1,11 +1,16 @@
-<div class="bar bar-header bar-calm">
-  <h1 class="title">browsing &#47;r&#47;{{ reddit }}</h1>
+<div ng-hide="reddit_loaded">
+  loading...
 </div>
+<div ng-show="reddit_loaded">
+  <div class="bar bar-header bar-calm">
+    <h1 class="title">browsing &#47;r&#47;{{ reddit }}</h1>
+  </div>
 
-<content has-header="true">
-  <list>
+  <div class="content padded has-header">
+    <list>
     <item ng-repeat="post in reddit_posts" ng-click="selectPost(post)" on-select="selectPost(post)">
-      {{ post.title }}
+    {{ post.title }}
     </item>
-  </list> 
-</content>
+    </list> 
+  </div>
+</div>
