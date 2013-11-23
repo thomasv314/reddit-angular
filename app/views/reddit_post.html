@@ -3,35 +3,64 @@
 </div>
 
 <div ng-show="post_loaded"> 
-<div class="bar bar-header bar-calm">
-  <h1 class="title">
-    {{ post.title }}
-  </h1>
-  <button class="button">
-    View
-  </button>
-
-</div>
-
-<div class="content has-header padded">
-  <div class="list">
-
-    <div class="item item-button-right">
-      <strong>Upvotes:</strong>
-      {{ post.ups }} 
-      <button class="button button-primary">
-        <i class="icon ion-arrow-up-b"></i>
-      </button>
-    </div>
-    
-    <div class="item item-button-right">
-      <strong>Downvotes:</strong>
-      {{ post.downs }}
-      <button class="button button-primary">
-        <i class="icon ion-arrow-down-b"></i>
-      </button>
-    </div> 
-
+  <div class="bar bar-header bar-calm">
+    <button ng-click="goHome()" class="button">
+      <i class="icon ion-home"></i>
+    </button>
+    <h1 class="title">
+      {{ post.title }}
+    </h1>
+    <button ng-click="viewPost()" class="button">
+      View
+    </button>
   </div>
-</div>
+
+  <div class="content has-header padded">
+
+    <div class="list">
+      <div class="item item-button-right">
+        <strong>Upvotes:</strong>
+        {{ post.ups }} 
+        <button class="button button-primary">
+          <i class="icon ion-arrow-up-b"></i>
+        </button>
+      </div>
+
+      <div class="item item-button-right">
+        <strong>Downvotes:</strong>
+        {{ post.downs }}
+        <button class="button button-primary">
+          <i class="icon ion-arrow-down-b"></i>
+        </button>
+      </div> 
+
+      <div class="item item-divider">
+        <i class="icon ion-chatboxes"></i>
+        {{ post.num_comments }} Comments
+      </div>
+    </div>
+
+    <div class="content">
+      <div ng-repeat="comment in post_comments" class="card">
+        <div class="item item-text-wrap">
+          {{ comment.body }}
+        </div>
+        <div class="item item-divider">
+          Posted by {{ comment.author }} 
+          ( 
+          <span class="comment-up">
+            <i class="icon ion-arrow-up-b"></i>
+            {{ comment.ups }}
+          </span>
+          /
+          <span class="comment-down">
+            {{ comment.downs }}
+            <i class="icon ion-arrow-down-b"></i>
+          </span>
+          )
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

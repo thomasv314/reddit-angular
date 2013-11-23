@@ -24,4 +24,9 @@ angular.module('redditApp', [
       .otherwise({
         redirectTo: '/'
       });
+  })
+  .run(function($rootScope, $location) {
+    $rootScope.goHome = function() {
+      $location.path('/');
+    } 
   });
