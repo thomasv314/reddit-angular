@@ -28,7 +28,10 @@
         {{ post.downs }}
         </p>
       </div>
-      <div class="post-body" ng-bind-html-unsafe="postHtml(post)">
+      
+      <div class="post-body" ng-if="post.selftext_html">
+        <div ng-bind-html="selftext">
+        </div> 
       </div>
     </div>
 
@@ -38,7 +41,7 @@
       </div>
       <div class="post-comments-body">
         <div ng-repeat="comment in post_comments" class="card">
-          <div class="item item-text-wrap" ng-bind-html-unsafe="commentHtml(comment)" >
+          <div class="item item-text-wrap" ng-bind-html="commentHtml(comment)" >
           </div>
           <div class="item item-divider">
             Posted by {{ comment.author }} 
