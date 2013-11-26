@@ -2,8 +2,19 @@
   loading...
 </div>
 
-<div ng-show="post_loaded"> 
+<div ng-show="viewing_post">
+  <div class="bar bar-header bar-calm">
+    <button ng-click="hidePost()" class="button">
+      <i class="icon ion-arrow-left-a"></i>
+    </button>
+    <h1 class="title">Viewing</h1>
+  </div>
+  <div class="content has-header">
+    <iframe style="width:100%; height: 100%" src="{{ external_post_url }}"></iframe>
+  </div>
+</div>
 
+<div ng-show="post_loaded" ng-hide="viewing_post"> 
   <div class="bar bar-header bar-calm">
     <button ng-click="goHome()" class="button">
       <i class="icon ion-home"></i>

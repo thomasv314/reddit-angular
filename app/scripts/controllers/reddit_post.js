@@ -1,15 +1,20 @@
 'use strict';
 
 angular.module('redditApp')
-.controller('RedditPostCtrl', function ($scope, $location, $http, $window, $sce) {
-
+.controller('RedditPostCtrl', function ($scope, $location, $http, $window, $sce, SharedProperties) {
 
   $scope.post_loaded = false;
 
+  $scope.viewing_post = false;
+
   $scope.post_url = 'http://www.corsproxy.com/reddit.com'+$location.path()+".json";
 
+  $scope.hidePost = function() {
+    $scope.viewing_post = false;
+  }
+
   $scope.viewPost = function() {
-    $window.location = $scope.post.url;
+    $scope.viewing_post = true;
   };
 
   $scope.htmlDecode = function(input) {
@@ -32,13 +37,19 @@ angular.module('redditApp')
       $scope.selftext = $scope.htmlDecode($scope.post.selftext_html);
       console.log($scope.selftext); 
     }
+    // Set the Post url
+    $scope.external_post_url = $sce.trustAsResourceUrl($scope.post.url);
+    
     // Parse the array of comments
     $scope.post_comments = data[1].data.children.map(function(obj) {
       obj.data.date = new Date(obj.data.created*1000);
       obj.data.date_short = obj.data.date.formatShort();
       return obj.data;
     });
+
     $scope.post_loaded = true;
+   
+    SharedProperties.setConfig('viewing_url', $scope.post.url); 
 
     console.log($scope);
   });   
