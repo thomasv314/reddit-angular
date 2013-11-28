@@ -1,10 +1,6 @@
-<div ng-hide="reddit_loaded">
-  loading...
-</div>
-<div ng-show="reddit_loaded">
-<side-menus>
-<pane side-menu-content>
+  <side-menus>
   <!-- Center content -->
+  <pane side-menu-content>
   <div class="bar bar-header bar-calm">
     <button ng-click="toggleMenu()" class="button">
       <i class="icon ion-navicon-round"></i>
@@ -14,27 +10,33 @@
 
   <div class="content padded has-header">
     <list>
-    <item ng-repeat="post in reddit_posts" ng-click="navigatePost(post)">
+    <item ng-repeat="post in reddit_posts" ng-click="selectPost(post)">
     <h2>{{ post.title }}</h2>
     </item>
+
+    
     </list> 
   </div>
-</pane>
-<side-menu side="left">
-  <div ng-controller="SidebarCtrl as sb">
-    <list ng-if="sb.reddit_logged_in">
+
+
+  </pane>
+
+  <!-- Left menu -->
+  <side-menu side="left">
+  <list ng-if="reddit_logged_in">
     <item>
     logged in
     </item>
-    </list>
-    <list ng-if="!sb.reddit_logged_in">
+  </list>
+
+  <list ng-if="!reddit_logged_in">
     <item ng-click="navigateLogIn()" >
-    log in
+      log in
     </item>
     <item ng-click="navigateBrowse()" >
-    browse
+      browse
     </list>
-  </div>
-</side-menu>
-</side-menus>
-</div>
+
+  </side-menu>
+
+  </side-menus>

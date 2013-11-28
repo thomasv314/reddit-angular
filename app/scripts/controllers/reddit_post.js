@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('redditApp')
-.controller('RedditPostCtrl', function ($scope, $location, $http, $window, $sce, SharedProperties) {
+.controller('RedditPostCtrl', function ($scope, $location, $http, $window, $sce, Reddit) {
 
   $scope.post_loaded = false;
 
   $scope.viewing_post = false;
 
-  $scope.post_url = 'http://www.corsproxy.com/reddit.com'+$location.path()+".json";
+  $scope.post_url = Reddit.getUrl($location.path() + ".json");
 
   $scope.hidePost = function() {
     $scope.viewing_post = false;
@@ -49,7 +49,7 @@ angular.module('redditApp')
 
     $scope.post_loaded = true;
    
-    SharedProperties.setConfig('viewing_url', $scope.post.url); 
+    Reddit.setConfig('viewing_url', $scope.post.url); 
 
     console.log($scope);
   });   

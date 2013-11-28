@@ -21,6 +21,14 @@ angular.module('redditApp', [
         templateUrl: 'views/reddit_post.html',
         controller: 'RedditPostCtrl'
       })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl'
+      })
+      .when('/browse', {
+        templateUrl: 'views/browse.html',
+        controller: 'BrowseCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

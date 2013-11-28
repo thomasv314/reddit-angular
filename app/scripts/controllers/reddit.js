@@ -8,7 +8,7 @@ angular.module('redditApp')
     // Reddit Configuration 
     $scope.reddit = $routeParams.redditId;
 
-    $scope.reddit_url = 'http://www.corsproxy.com/reddit.com/r/'+$scope.reddit+'.json';
+    $scope.reddit_url = 'http://reddit.com/r/'+$scope.reddit+'.json';
 
     // Reddit Posts
     $scope.reddit_posts = [];
