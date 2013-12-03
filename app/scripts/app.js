@@ -88,6 +88,7 @@ function($httpProvider) {
   });
 })
 .run(function($rootScope, $location, Reddit) {
+ 
   
   Reddit.loadSession();
 

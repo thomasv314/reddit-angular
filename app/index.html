@@ -23,7 +23,15 @@
       <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
 
-  <div class="container" ng-view=""></div>
+<side-menus>
+<pane side-menu-content ng-view="">
+</pane>
+<side-menu side="left">
+   <div ng-controller="SidebarCtrl">
+      <div ng-include src="'navigation.html'">
+      </div>
+    </div>
+</side-menu>
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
 <script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

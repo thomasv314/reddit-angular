@@ -1,0 +1,24 @@
+<list>
+
+<item ng-if="reddit_logged_in">
+logged in
+</item>
+<item ng-if="!reddit_logged_in">
+logged out
+</item>
+<item ng-click="wat()">
+wat
+</item>
+
+<list ng-if="sb.reddit_logged_in">
+<item>
+logged in
+</item>
+</list>
+<list ng-if="!sb.reddit_logged_in">
+<item ng-click="navigateLogIn()" >
+log in
+</item>
+<item ng-click="navigateBrowse()" >
+browse
+</list>
