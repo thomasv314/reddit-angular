@@ -1,18 +1,23 @@
 'use strict';
 
 angular.module('redditApp')
-.controller('SidebarCtrl', function ($rootScope, $scope, Reddit) {
+.controller('SidebarCtrl', function ($rootScope, $scope, $location, Reddit) {
 
-  $scope.name = "lol";
+  $scope.username = Reddit.getConfig('username');
 
   $scope.reddit_logged_in = Reddit.isLoggedIn();
 
-  $scope.wat = function() {
-    console.log('wat');
+  $scope.navigateProfile = function() {
+    $location.path('u/'+$scope.username);
+  };
+
+  $scope.navigateMain = function() { 
+    $location.path('/');
   };
 
   $rootScope.$on('user:loggedIn', function() { 
     $scope.reddit_logged_in = true;
+    $scope.username = Reddit.getConfig('username'); 
     console.log("Sidebar knows.");
   });
 

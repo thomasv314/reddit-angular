@@ -39,8 +39,20 @@ angular.module('redditApp')
   
   };
 
-  this.getUserInfo = function(successCb, errorCb) {
+  this.getUserInfo = function(user, successCb, errorCb) { 
+    $http.get(this.getUrl('user/'+user+'.json'))
+    .success(successCb)
+    .error(errorCb)
+  };
+
+  this.getSelfInfo = function(successCb, errorCb) {
     $http.get(this.getUrl('api/me.json'))
+    .success(successCb)
+    .error(errorCb)
+  };
+
+  this.getUserSubreddits = function(successCb, errorCb) { 
+    $http.get(this.getUrl('subreddits/mine.json?limit=1000'))
     .success(successCb)
     .error(errorCb)
   };

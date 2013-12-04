@@ -75,6 +75,10 @@ function($httpProvider) {
     templateUrl: 'views/reddit_post.html',
     controller: 'RedditPostCtrl'
   })
+  .when('/u/:username', {
+    templateUrl: 'views/profile.html',
+    controller: 'ProfileCtrl'
+  })
   .when('/login', {
     templateUrl: 'views/login.html',
     controller: 'LoginCtrl'

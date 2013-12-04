@@ -1,24 +1,23 @@
 <list>
 
-<item ng-if="reddit_logged_in">
-logged in
+<item ng-if="reddit_logged_in" ng-click="navigateProfile()">
+logged in as {{ username }}
 </item>
-<item ng-if="!reddit_logged_in">
-logged out
-</item>
-<item ng-click="wat()">
-wat
+<item ng-if="!reddit_logged_in" ng-click="navigateLogin()">
+login
 </item>
 
-<list ng-if="sb.reddit_logged_in">
-<item>
-logged in
+<item ng-click="navigateMain()">
+home
 </item>
-</list>
-<list ng-if="!sb.reddit_logged_in">
-<item ng-click="navigateLogIn()" >
-log in
-</item>
+
 <item ng-click="navigateBrowse()" >
 browse
+</item>
+
+<item ng-if="reddit_logged_in" ng-click="navigateLogout()">
+logout
+</item>
+
+
 </list>

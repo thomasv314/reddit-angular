@@ -13,7 +13,6 @@ angular.module('redditApp')
     console.log('hi');
     var onSuccess = function(data) {
       data = data.json;
-      console.log(data);
       if (data.errors.length > 0) {
         $scope.has_errors = true;
         $scope.errors = "";
@@ -24,34 +23,53 @@ angular.module('redditApp')
         $scope.has_errors = false;
         $scope.errors = "";
         $scope.reddit_logged_in = true;
+
         Reddit.setConfig('username', $scope.username); 
         Reddit.setConfig('cookie', data.data.cookie);
         Reddit.setConfig('modhash', data.data.modhash);
         Reddit.setConfig('logged_in', true);
         Reddit.saveSession();
+
+        var onInfoSuccess = function(data) {
+          if (data['kind'] == "t2") {
+            Reddit.setConfig('user', data);
+            $rootScope.$broadcast('user:loggedIn');
+          }
+        };
+
+        var onInfoError = function(data, status, headers, config) {
+          alert("Error retrieving user information.");
+          $rootScope.$broadcast('user:error');
+        };
+
+        Reddit.getSelfInfo(onInfoSuccess, onInfoError);
+
+
+        var onSubLoadSuccess = function (data) { 
+          console.log("loaded subz", data);
+        };
         
-        Reddit.getUserInfo(function(data) {
-          console.log("Data", data);
-        }, function(data, status, headers, config) {
+        var onSubLoadError = function(data, status, headers, config) {
+          alert("Error retrieving subreddits.");
+          $rootScope.$broadcast('user:error');
+        };
 
-        });
-
-        $rootScope.$broadcast('user:loggedIn');
-                
+        Reddit.getUserSubreddits(onSubLoadSuccess, onSubLoadError);
 
         $location.path("/");
+
       };
     };
 
-      var onError = function(data, status, headers, config) {
-        console.log({ data: data, status: status, headers: headers, config: config });
-      };
+    var onError = function(data, status, headers, config) {
+      console.log({ data: data, status: status, headers: headers, config: config });
+    };
 
-      Reddit.postLogin($scope.username, $scope.password, $scope.remember, onSuccess, onError);
-      /*
-         Reddit.login
-         var url = Reddit.getUrl('api/login')
-         , message = {
+    Reddit.postLogin($scope.username, $scope.password, $scope.remember, onSuccess, onError);
+    /*
+       Reddit.login
+       var url = Reddit.getUrl('api/login')
+       , message = {
 api_type: "json",
 passwd: $scope.password,
 rem: $scope.remember,
@@ -86,6 +104,6 @@ $location.path("/");
 console.log({ data: data, status: status, headers: headers, config: config });
 });
 */
-    }
+  }
 
 });
