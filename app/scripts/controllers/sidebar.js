@@ -7,6 +7,10 @@ angular.module('redditApp')
 
   $scope.reddit_logged_in = Reddit.isLoggedIn();
 
+  $scope.navigateLogin = function() { 
+    $location.path('login');
+  }
+
   $scope.navigateProfile = function() {
     $location.path('u/'+$scope.username);
   };

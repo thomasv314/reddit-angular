@@ -1,6 +1,8 @@
+require 'bundler/setup'
 require 'sinatra'
 require 'sinatra/json'
 require 'httparty'
+
 use Rack::Logger
 helpers Sinatra::JSON
 

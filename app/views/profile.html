@@ -4,7 +4,30 @@
 
 <div ng-if="loaded_user_info">
   <div class="bar bar-header bar-balanced">
-    <h1 class="title">bar-balanced</h1>
+    <h1 class="title">{{ username }}</h1>
+  </div>
+  <div class="content has-header">
+    <div class="list list-account-statistics">
+      <div class="item item-divider">
+        Statistics
+      </div>
+
+      <a class="item item-icon-left" href="#">
+        <i class="icon ion-link"></i>
+        {{ user.link_karma }} Link Karma
+      </a>
+
+      <a class="item item-icon-left" href="#">
+        <i class="icon ion-email"></i>
+        {{ user.comment_karma }} Comment Karma
+      </a>
+    </div>
+
+    <div ng-if="loaded_user_history" class="list">
+      <div class="item item-divider">
+        Overview
+      </div>
+    </div>
   </div>
 </div>
 

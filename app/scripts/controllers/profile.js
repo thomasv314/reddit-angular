@@ -12,13 +12,17 @@ angular.module('redditApp')
 
     $scope.successLoadingUserInfo = function(data) {
       $scope.loaded_user_info = true;
+       
+      if (data["kind"] == "t2") {
+        $scope.user = data['data'];
+      }
     };
 
     $scope.errorLoadingUserInfo = function(data, status, headers, config) {
       $scope.error_loading_user_info = true; 
     };
 
-    $http.get(Reddit.getUrl('user/'+$scope.username+'.json'))
+    $http.get(Reddit.getUrl('user/'+$scope.username+'/about.json'))
     .success($scope.successLoadingUserInfo)
     .error($scope.errorLoadingUserInfo)
 

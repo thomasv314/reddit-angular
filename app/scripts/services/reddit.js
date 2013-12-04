@@ -22,7 +22,6 @@ angular.module('redditApp')
     
     $http.post(url, { data: message })
     .success(function(data) {
-    
       if (data['json']['data']['cookie']) 
         that.setCookie(data['json']['data']['cookie']);
      
