@@ -1,1 +1,12 @@
-<p>This is the profile view.</p>
+<div ng-if="error_loading_user_info">
+  error loading user info.
+</div>
+
+<div ng-if="loaded_user_info">
+  <div class="bar bar-header bar-balanced">
+    <h1 class="title">bar-balanced</h1>
+  </div>
+</div>
+
+<div ng-if="!loaded_user_info">
+</div>
