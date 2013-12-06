@@ -28,6 +28,7 @@ angular.module('redditApp')
   };
 
   $http.get($scope.post_url).success(function(data) {
+    console.log('wtf', data);
     // Set the Post
     $scope.post = data[0].data.children[0].data;
     // Compute the date of the Post

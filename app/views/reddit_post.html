@@ -22,54 +22,65 @@
     <h1 class="title">
       {{ post.title }}
     </h1>
-    <button ng-click="viewPost()" class="button">
+    <button ng-click="viewPost()" class="button button-clear ">
       View
     </button>
   </div>
 
   <content has-header="true" padding="true" scroll="true">
-    <div class="post">
-      <div class="post-header"> 
-        <h1 ng-click="viewPost()">{{ post.title }}</h1>
-        <p class="details"> 
-        Posted by {{ post.author }} on {{ post.date_short }}.
-        <i class="icon ion-arrow-up-b"></i> 
-        {{ post.ups }} 
-        <i class="icon ion-arrow-down-b"></i>
-        {{ post.downs }}
-        </p>
-      </div>
-      
-      <div class="post-body" ng-if="post.selftext_html">
-        <div ng-bind-html="selftext">
-        </div> 
-      </div>
+  <div class="post">
+    <div class="post-header"> 
+      <h1 ng-click="viewPost()">{{ post.title }}</h1>
+      <p class="details"> 
+      Posted by {{ post.author }} on {{ post.date_short }}.
+      <i class="icon ion-arrow-up-b"></i> 
+      {{ post.ups }} 
+      <i class="icon ion-arrow-down-b"></i>
+      {{ post.downs }}
+      </p>
     </div>
 
-    <div class="post-comments">
-      <div class="post-comments-header">
-        <h4>Comments</h4>
-      </div>
-      <div class="post-comments-body">
-        <div ng-repeat="comment in post_comments" class="card">
-          <div class="item item-text-wrap" ng-bind-html="commentHtml(comment)" >
-          </div>
-          <div class="item item-divider">
-            Posted by {{ comment.author }} 
-            ( 
-            <span class="comment-up">
-              <i class="icon ion-arrow-up-b"></i>
-              {{ comment.ups }}
-            </span>
-            /
-            <span class="comment-down">
-              {{ comment.downs }}
-              <i class="icon ion-arrow-down-b"></i>
-            </span>
-            )
+    <div class="post-body" ng-if="post.selftext_html">
+      <div ng-bind-html="selftext">
+      </div> 
+    </div>
+  </div>
+
+  <div class="post-comments">
+    <div class="post-comments-header">
+      <h4>Comments</h4>
+    </div>
+    <div class="post-comments-body">
+
+      <div ng-repeat="comment in post_comments" class="card">
+        <div class="item item-text-wrap" ng-bind-html="commentHtml(comment)" >
+        </div>
+
+        <div class="item item-divider">
+          Posted by {{ comment.author }} 
+          ( 
+          <span class="comment-up">
+            <i class="icon ion-arrow-up-b"></i>
+            {{ comment.ups }}
+          </span>
+          /
+          <span class="comment-down">
+            {{ comment.downs }}
+            <i class="icon ion-arrow-down-b"></i>
+          </span>
+          )
+
+          {{ comment.replies.data.children.length }} Comments 
+        </div>
+        <div class="item">
+          <div ng-repeat="reply in comment.replies.data.children">
+              <span ng-bind-html="reply.data.body"></span>
+              <span ng-bind-html="reply.data.author"></span>
           </div>
         </div>
       </div>
+
     </div>
-  </content>
+    </content>
+  </div>
 </div>
