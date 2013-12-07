@@ -1,0 +1,23 @@
+<p class="comment-body" ng-bind-html="htmlDecode(comment.body_html)"></p>
+<div class="comment-footer">
+  Posted by <a ng-click="navigateCommentAuthor(comment)">{{ comment.author }}</a>
+  ( 
+  <span class="comment-up"> 
+    <i class="icon ion-arrow-up-b"></i>
+    {{ comment.ups }}
+  </span>
+  /
+  <span class="comment-down">
+    <i class="icon ion-arrow-down-b"></i>
+    {{ comment.downs }}
+  </span>
+  )
+</div>
+<div class="comment-replies">
+  <div class="comment comment-reply" ng-repeat="reply in comment.replies.data.children">
+    <p class="comment-body" ng-bind-html="htmlDecode(reply.data.body_html)">
+    <div class="comment-footer">
+      Posted by <a ng-click="navigateCommentAuthor(reply)">{{ reply.data.author }}</a>
+    </div>
+  </div> 
+</div>

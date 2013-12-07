@@ -1,0 +1,25 @@
+.comment { 
+  background:#fafafa;
+  border:1px solid #f0f0f0;
+  padding:.25em;
+  border-radius:.25em;
+  margin-top:.5em;
+  p {
+    margin:0;
+    margin-bottom:.5em;
+  }
+  &.comment-reply { 
+    background:#fff;
+    border:1px solid #f0f0f0;
+    margin-top:.5em;
+    margin-left:.5em;
+    padding:.25em;
+    .comment-footer {
+      color:#333;
+    }
+  }
+
+  .comment-footer { 
+    font-weight:bolder;
+  }
+}
